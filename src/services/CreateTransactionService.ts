@@ -26,7 +26,7 @@ class CreateTransactionService {
       throw new AppError('Transaction type not allowed!', 400);
     }
 
-    if (type === 'outcome' && value > balanceTotal) {
+    if (type === 'outcome' && value > Number(balanceTotal)) {
       throw new AppError(
         'Unable to make the transaction: value not available',
         400,

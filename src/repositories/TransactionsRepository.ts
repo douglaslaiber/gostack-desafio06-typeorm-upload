@@ -3,9 +3,9 @@ import { EntityRepository, Repository } from 'typeorm';
 import Transaction from '../models/Transaction';
 
 interface IBalance {
-  income: number;
-  outcome: number;
-  total: number;
+  income: string;
+  outcome: string;
+  total: string;
 }
 
 @EntityRepository(Transaction)
@@ -29,7 +29,11 @@ class TransactionsRepository extends Repository<Transaction> {
     }, 0);
 
     const total = income - outcome;
-    const balance: IBalance = { income, outcome, total };
+    const balance: IBalance = {
+      income: income.toFixed(2),
+      outcome: outcome.toFixed(2),
+      total: total.toFixed(2),
+    };
 
     return balance;
   }
